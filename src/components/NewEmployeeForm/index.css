@@ -1,0 +1,75 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: solid;
+    border-color: tomato;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+
+input, select {
+    height: 30px;
+    width: calc(80% + 20px);
+    font-size: 16px;
+}
+
+.fullname {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.fullname-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.fullname-wrapper input {
+    width: 100%;
+}
+
+.fullname p {
+    padding-bottom: 6px;
+    width: 20%;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    background: tomato;
+    border: none;
+    color: white;
+    font-size: 16px;
+}

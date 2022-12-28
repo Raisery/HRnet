@@ -27,33 +27,38 @@
 }
 
 
-input, select {
+.standard-input, select , .fullname-wrapper, .dropdown-input, .dropdown-input input{ 
     height: 30px;
     width: calc(80% + 20px);
     font-size: 16px;
+    text-align: center;
 }
 
 .fullname {
     display: flex;
-    gap: 10px;
     align-items: flex-end;
+    justify-content: space-between;
     width: 100%;
 }
 
 .fullname-wrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 50%;
+    justify-content: space-between;
+    height: auto;
+    gap: 10px;
 }
 
-.fullname-wrapper input {
+.fullname-wrapper .input-wrapper {
+    flex-direction: column;
+}
+
+.fullname-wrapper .standard-input, .dropdown-input input {
     width: 100%;
 }
 
 .fullname p {
     padding-bottom: 6px;
-    width: 20%;
 }
 
 .input-wrapper {

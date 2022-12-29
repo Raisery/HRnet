@@ -3,7 +3,6 @@ export default function rowFactory(data) {
     for(var item of data) {
         formatedData.push({id: item.id, value: item.value})
     }
-    console.log(data)
     const row = {
         firstName: formatedData.find(item => item.id === 'first-name').value,
         lastName: formatedData.find(item => item.id === 'last-name').value,

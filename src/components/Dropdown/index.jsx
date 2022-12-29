@@ -6,13 +6,8 @@ import './index.css'
  *
  * @returns A scrolling menu
  */
-export default function Dropdown({
-    className = '',
-    inputId,
-    data,
-    required = false,
-}) {
-    const [selected, setSelected] = useState('')
+export default function Dropdown({ className = '', inputId, data }) {
+    const [selected, setSelected] = useState(data[0])
     const [selecting, setSelecting] = useState(false)
 
     function handleSelecting(event) {
@@ -23,6 +18,10 @@ export default function Dropdown({
     function handleSelectItem(event) {
         setSelecting(false)
         setSelected(event.target.innerHTML)
+    }
+
+    function handleBlur(event) {
+        setSelecting(false)
     }
 
     const menu = []
@@ -39,14 +38,17 @@ export default function Dropdown({
     })
 
     return (
-        <div className={className + ' dropdown'} onClick={handleSelecting}>
+        <div
+            className={className + ' dropdown'}
+            onFocus={handleSelecting}
+            onBlur={handleBlur}
+        >
             <input
                 readOnly={true}
                 type="text"
                 name=""
                 id={inputId}
                 value={selected}
-                required={required}
             />
             <i className="fas fa-chevron-down"></i>
             <div className={'dropdown__menu ' + (selecting ? '' : 'invisible')}>

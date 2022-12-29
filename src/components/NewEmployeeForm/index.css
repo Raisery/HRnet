@@ -53,7 +53,7 @@
     flex-direction: column;
 }
 
-.fullname-wrapper .standard-input, .dropdown-input input {
+.fullname-wrapper .standard-input, .dropdown-input input, .error-wrapper input {
     width: 100%;
 }
 
@@ -77,4 +77,19 @@ button {
     border: none;
     color: white;
     font-size: 16px;
+}
+
+.error-wrapper {
+    width: calc(80% + 20px);
+}
+.error-wrapper p {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.field-error {
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
 }

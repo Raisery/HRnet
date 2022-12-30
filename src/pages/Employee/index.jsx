@@ -73,4 +73,4 @@ export default function Employee() {
             <DataTable columns={columns} data={employee.data} pagination />
         </div>
     )
-}
+} //test

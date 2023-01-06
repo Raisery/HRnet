@@ -1,0 +1,8 @@
+.custom-button {
+    background: none;
+    border: solid;
+    border-width:  1px ;
+    border-radius: 3px;
+    border-color: rgb(118, 118, 118);
+    color: black;
+}

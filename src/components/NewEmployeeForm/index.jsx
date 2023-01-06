@@ -1,12 +1,13 @@
 import Dropdown from '../Dropdown'
 import './index.css'
 import { DEPARTMENTS, STATES } from '../../utils/constant'
-import 'react-datepicker/dist/react-datepicker.css'
 import { useDispatch } from 'react-redux'
 import rowFactory from '../../utils/Factory/rowFactory'
 import * as employeeAction from '../../utils/slices/employee'
 import employeeFormIsValid from '../../utils/Validation/employeeFormIsValid'
 import { useState } from 'react'
+import React from 'react'
+import DatePicker from '../DatePicker'
 
 /**
  * Component for display NewEmployeeForm
@@ -17,12 +18,32 @@ export default function NewEmployeeForm({ onSubmit }) {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch()
 
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [birthDate, setBirthDate] = useState(new Date())
+    const [street, setStreet] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState(STATES[0])
+    const [zipCode, setZipCode] = useState('')
+    const [startDate, setStartDate] = useState(new Date())
+    const [department, setDepartment] = useState(DEPARTMENTS[0])
+
     function handleSubmit(event) {
         event.preventDefault()
-        const fields = document.querySelectorAll('input')
-        const testResult = employeeFormIsValid(fields)
+        const values = [
+            { id: 'first-name', value: firstName },
+            { id: 'last-name', value: lastName },
+            { id: 'date-of-birth', value: birthDate },
+            { id: 'street', value: street },
+            { id: 'city', value: city },
+            { id: 'state', value: state },
+            { id: 'zip-code', value: zipCode },
+            { id: 'start-date', value: startDate },
+            { id: 'department', value: department },
+        ]
+        const testResult = employeeFormIsValid(values)
         if (testResult.length !== 0) return setErrors(testResult)
-        const row = rowFactory(fields)
+        const row = rowFactory(values)
 
         document.querySelector('.form').reset()
         dispatch(employeeAction.add(row))
@@ -43,6 +64,10 @@ export default function NewEmployeeForm({ onSubmit }) {
                                     type="text"
                                     id="first-name"
                                     required={true}
+                                    defaultValue={firstName}
+                                    onChange={(event) =>
+                                        setFirstName(event.target.value)
+                                    }
                                 />
                                 <p
                                     className={
@@ -62,6 +87,10 @@ export default function NewEmployeeForm({ onSubmit }) {
                                     type="text"
                                     id="last-name"
                                     required={true}
+                                    defaultValue={lastName}
+                                    onChange={(event) =>
+                                        setLastName(event.target.value)
+                                    }
                                 />
                                 <p
                                     className={
@@ -79,13 +108,13 @@ export default function NewEmployeeForm({ onSubmit }) {
 
                     <div className="input-wrapper">
                         <label htmlFor="date-of-birth">Date of Birth :</label>
-                        <input
-                            className="standard-input"
-                            type="date"
-                            name="date-of-birth"
-                            id="date-of-birth"
-                            required={true}
-                        />
+                        <div className="custom-datepicker-wrapper">
+                            <DatePicker
+                                className="standard-input"
+                                value={birthDate}
+                                onChangeHandler={setBirthDate}
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -97,6 +126,8 @@ export default function NewEmployeeForm({ onSubmit }) {
                             id="street"
                             type="text"
                             required={true}
+                            defaultValue={street}
+                            onChange={(event) => setStreet(event.target.value)}
                         />
                     </div>
                     <div className="input-wrapper">
@@ -107,6 +138,10 @@ export default function NewEmployeeForm({ onSubmit }) {
                                 id="city"
                                 type="text"
                                 required={true}
+                                defaultValue={city}
+                                onChange={(event) =>
+                                    setCity(event.target.value)
+                                }
                             />
                             <p
                                 className={
@@ -125,6 +160,7 @@ export default function NewEmployeeForm({ onSubmit }) {
                             className="dropdown-input"
                             inputId="state"
                             data={STATES}
+                            onChange={(event) => setState(event.target.value)}
                         />
                     </div>
                     <div className="input-wrapper">
@@ -134,19 +170,21 @@ export default function NewEmployeeForm({ onSubmit }) {
                             id="zip-code"
                             type="number"
                             required={true}
+                            defaultValue={zipCode}
+                            onChange={(event) => setZipCode(event.target.value)}
                         />
                     </div>
                 </div>
                 <div className="form-fields">
                     <div className="input-wrapper">
                         <label htmlFor="start-date">Start Date :</label>
-                        <input
-                            className="standard-input"
-                            type="date"
-                            name="start-date"
-                            id="start-date"
-                            required={true}
-                        />
+                        <div className="custom-datepicker-wrapper">
+                            <DatePicker
+                                className="standard-input"
+                                value={startDate}
+                                onChangeHandler={setStartDate}
+                            />
+                        </div>
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="department">Department :</label>
@@ -154,11 +192,13 @@ export default function NewEmployeeForm({ onSubmit }) {
                             className="dropdown-input"
                             inputId="department"
                             data={DEPARTMENTS}
+                            defaultValue={department}
+                            onChange={setDepartment}
                         />
                     </div>
                 </div>
 
-                <button>Save</button>
+                <button className="submit_button">Save</button>
             </form>
         </div>
     )

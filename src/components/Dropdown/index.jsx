@@ -21,7 +21,12 @@ export default function Dropdown({ className = '', inputId, data }) {
     }
 
     function handleBlur(event) {
-        setSelecting(false)
+        if (
+            !data.includes(event.target.innerHTML) &&
+            !event.target.id === inputId
+        ) {
+            setSelecting(false)
+        }
     }
 
     const menu = []

@@ -27,7 +27,7 @@
 }
 
 
-.standard-input, select , .fullname-wrapper, .dropdown-input, .dropdown-input input{ 
+.standard-input, select , .fullname-wrapper, .dropdown-input, .dropdown-input input, .custom-datepicker-wrapper { 
     height: 30px;
     width: calc(80% + 20px);
     font-size: 16px;
@@ -53,7 +53,7 @@
     flex-direction: column;
 }
 
-.fullname-wrapper .standard-input, .dropdown-input input, .error-wrapper input {
+.fullname-wrapper .standard-input, .dropdown-input input, .error-wrapper input , .custom-datepicker-wrapper .standard-input{
     width: 100%;
 }
 
@@ -70,13 +70,18 @@
 
 }
 
-button {
+.submit_button {
     width: 100px;
     height: 30px;
-    background: tomato;
     border: none;
     color: white;
     font-size: 16px;
+}
+
+button {
+    background: tomato;
+    border: none;
+    color: white;
 }
 
 .error-wrapper {
@@ -93,3 +98,5 @@ button {
     font-size: 14px;
     font-weight: 600;
 }
+
+

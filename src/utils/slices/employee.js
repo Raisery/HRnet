@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { EXEMPLE } from '../constant';
 
 
 const { actions, reducer } = createSlice({
     name: 'employee',
     initialState: {
-        data: []
+        data: EXEMPLE
     },
     reducers: {
         add: (draft, action) => {

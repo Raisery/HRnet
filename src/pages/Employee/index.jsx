@@ -4,6 +4,9 @@ import { selectEmployee } from '../../utils/selector'
 import Header from '../../components/Header'
 import { PAGES } from '../../utils/constant'
 import './index.css'
+import { useState } from 'react'
+import searchIcon from '../../assets/icons/search_icon.svg'
+import filterData from '../../utils/filterData'
 
 const columns = [
     {
@@ -65,12 +68,29 @@ const columns = [
  * @returns The Employee page
  */
 export default function Employee() {
+    const [search, setSearch] = useState('')
     const employee = useSelector(selectEmployee)
+
+    const data = filterData(search, employee.data)
 
     return (
         <div className="employee">
             <Header page={PAGES[1]} />
-            <DataTable columns={columns} data={employee.data} pagination />
+            <div className="search-bar">
+                <img
+                    className="search-bar__icon"
+                    src={searchIcon}
+                    alt="Search"
+                />
+                <input
+                    className="search-bar__input"
+                    type="text"
+                    id="search"
+                    placeholder="Search"
+                    onChange={(event) => setSearch(event.target.value)}
+                />
+            </div>
+            <DataTable columns={columns} data={data} pagination />
         </div>
     )
-} //test
+}

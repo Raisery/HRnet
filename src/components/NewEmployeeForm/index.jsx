@@ -1,4 +1,4 @@
-import Dropdown from '../Dropdown'
+import Dropdown from 'dropdown-input-react/dist/components/Dropdown'
 import './index.css'
 import { DEPARTMENTS, STATES } from '../../utils/constant'
 import { useDispatch } from 'react-redux'

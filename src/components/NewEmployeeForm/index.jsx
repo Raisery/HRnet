@@ -29,6 +29,7 @@ export default function NewEmployeeForm({ onSubmit }) {
     const [department, setDepartment] = useState(DEPARTMENTS[0])
 
     function handleSubmit(event) {
+        setErrors([])
         event.preventDefault()
         const values = [
             { id: 'first-name', value: firstName },
@@ -44,10 +45,18 @@ export default function NewEmployeeForm({ onSubmit }) {
         const testResult = employeeFormIsValid(values)
         if (testResult.length !== 0) return setErrors(testResult)
         const row = rowFactory(values)
-
-        document.querySelector('.form').reset()
         dispatch(employeeAction.add(row))
         onSubmit(event)
+        setFirstName('')
+        setLastName('')
+        setBirthDate(new Date())
+        setStreet('')
+        setCity('')
+        setState(STATES[0])
+        setZipCode('')
+        setStartDate(new Date())
+        setDepartment(DEPARTMENTS[0])
+        document.querySelector('.form').reset()
     }
 
     return (
